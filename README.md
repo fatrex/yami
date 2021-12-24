@@ -11,4 +11,4 @@ Is made with Svelte + Electron + Tailwind.
 This is a work in progess so is not suitable for stable use
 
 ## License
-See [LICENSE]
+See [LICENSE](LICENSE)
