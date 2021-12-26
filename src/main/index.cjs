@@ -1,5 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
+require('./menu.cjs')
+
 
 const createWindow = () => {
   const win = new BrowserWindow({
