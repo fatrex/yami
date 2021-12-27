@@ -10,12 +10,12 @@ const openSettingsWindow = () => {
     height: 640,
     resizable: false,
     width: 480,
-    title: '',
+    title: 'yami | Settings',
     minimizable: false,
     fullscreenable: false
   })
 
-  settingsWindow.loadURL('http://localhost:3000/settings')
+  settingsWindow.loadURL('http://localhost:3000/settings/accounts')
 
   settingsWindow.on('closed', function() {
     settingsWindow = null
