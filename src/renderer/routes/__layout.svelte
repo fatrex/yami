@@ -19,7 +19,12 @@
   })
 </script>
 
-<div class="min-h-screen flex">
+<!-- Custom navbar-->
+<div class="h-9 bg-gray-800 fixed top-0 left-0 right-0" style="-webkit-app-region: drag">
+  &nbsp;
+</div>
+
+<div class="min-h-screen flex mt-8">
   <Sidebar />
 
   <main class="flex-1 min-w-0 overflow-auto ...">
