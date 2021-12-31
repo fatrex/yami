@@ -6,6 +6,7 @@ const createWindow = () => {
     width: 1024,
     height: 768,
     titleBarStyle: 'hidden',
+    icon: path.join(process.cwd(), './static/logo.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.cjs')
     }
