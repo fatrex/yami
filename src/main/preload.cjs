@@ -2,7 +2,8 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld(
   'messages', {
-    load: async (account) => await ipcRenderer.invoke('load-messages', account)
+    load: async (account) => await ipcRenderer.invoke('load-messages', account),
+    open: async (data) => await ipcRenderer.invoke('open-message', data)
   }
 )
 

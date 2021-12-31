@@ -1,4 +1,7 @@
 <script>
+  import { currentAccount, currentMessage } from '../stores';
+
+  export let uid
   export let subject
   export let from
   export let date
@@ -9,9 +12,14 @@
     const year = new Date(date).getFullYear()
     return `${day}/${month}/${year}`
   }
+
+  async function openContent() {
+    const message = await window.messages.open({ account: $currentAccount, uid})
+    currentMessage.set(message)
+  }
 </script>
 
-<div class="text-sm grid grid-flow-col grid-cols-12 items-center h-10 hover:bg-gray-200 cursor-pointer">
+<div class="text-sm grid grid-flow-col grid-cols-12 items-center h-10 hover:bg-gray-200 cursor-pointer" on:click={openContent}>
   <div class="justify-self-start col-span-1 pl-2">
     <p>{humanDate(date)}</p>
   </div>

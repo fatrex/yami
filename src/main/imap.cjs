@@ -1,4 +1,5 @@
-const { ImapFlow } = require('imapflow');
+const { ImapFlow } = require('imapflow')
+const mailParser = require('mailparser').simpleParser
 
 const createClient = ({ host, port, secure, user, pass }) => {
   return new ImapFlow({
@@ -31,7 +32,6 @@ const retrieveMessages = async (account, { maxMessages = 10, folder = 'INBOX'}) 
   } finally {
     lock.release()
   }
-
   await client.logout();
   return messages;
 }
@@ -44,7 +44,25 @@ const retrieveFolders = async (account) => {
   return foldersTree;
 }
 
+const openMessage = async (account, messageUid) => {
+  const client = createClient({ ...account, pass: account.password })
+  await client.connect();
+  let lock = await client.getMailboxLock('INBOX');
+  let message = null
+  try {
+    message = await client.fetchOne(messageUid, { envelope: true, source: true,  });
+  } finally {
+      lock.release();
+  }
+  await client.logout();
+  return {
+    ...message,
+    source: await mailParser(message.source)
+  };
+}
+
 module.exports = {
   retrieveMessages,
-  retrieveFolders
+  retrieveFolders,
+  openMessage
 }
