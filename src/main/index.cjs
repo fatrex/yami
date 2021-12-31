@@ -51,7 +51,13 @@ ipcMain.handle('load-accounts', async () => {
 })
 
 ipcMain.handle('save-account', async (_, data) => {
-  console.log(data)
   const { saveAccount } = require('./db.cjs')
   return saveAccount(data)
+})
+
+ipcMain.handle('open-message', async (_, { account, uid }) => {
+  const { getAccount } = require('./db.cjs')
+  const { openMessage } = require('./imap.cjs')
+  const dbAccount = await getAccount(account.user)
+  return openMessage(dbAccount, uid)
 })

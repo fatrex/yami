@@ -11,3 +11,5 @@ export const currentAccount = writable({
   user: null,
   password: null
 })
+
+export const currentMessage = writable();

@@ -1,7 +1,7 @@
 <script>
   import SingleMessage from '../components/SingleMessage.svelte'
 
-  import { messages } from '../stores'
+  import { messages, currentMessage } from '../stores'
 </script>
 
 <div>
@@ -9,12 +9,14 @@
   <div class="grid grid-cols-1 divide-y overflow-y-scroll max-h-96">
     {#if $messages.length > 0}
     {#each $messages as message }
-    <SingleMessage {...message.envelope} />
+    <SingleMessage {...message.envelope} uid={message.seq} />
     {/each}
     {/if}
   </div>
   <hr class="border-2">
-  <div class="p-10">
-    Email content
+  <div class="py-10">
+    {#if $currentMessage}
+      <iframe class="w-full h-screen" title={$currentMessage.source.subject} srcdoc={$currentMessage.source.html}></iframe>
+    {/if}
   </div>
 </div>
