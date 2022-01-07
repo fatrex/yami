@@ -15,14 +15,14 @@
       {#each $folders as folder}
       <button
         type="button"
-        class="flex items-center px-4 py-2 text-gray-700 bg-gray-200 rounded cursor-not-allowed"
+        class="flex items-center px-2 py-1 text-gray-700 bg-gray-200 rounded cursor-not-allowed"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
         </svg>
 
-        <span class="mx-4 font-medium">
-          <p class="text-ellipsis overflow-hidden">{folder.name}</p>
+        <span class="mx-1 text-sm text-left">
+          <p>{folder.name}</p>
         </span>
       </button>
       {/each}
