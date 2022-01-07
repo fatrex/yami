@@ -2,12 +2,17 @@
   import { folders } from '../stores';
 
   import AccountPicker from './Account/AccountPicker.svelte'
+  import Logo from '../images/logo.png'
 </script>
 
 <div
-  class="flex flex-col w-64 h-screen px-4 py-8 bg-gray-800 border-r"
+  class="flex flex-col w-64 h-screen px-4 pt-2 pb-8 bg-gray-800 border-r"
 >
-  <h2 class="text-3xl font-semibold text-gray-800 dark:text-white text-center">yami</h2>
+  <div class="flex flex-row items-center justify-center">
+    <img class="h-14" alt="yami" src={Logo} />
+    <h2 class="pl-3 text-3xl font-semibold text-gray-800 dark:text-white text-center">yami</h2>
+  </div>
+
 
   <div class="flex flex-col justify-between flex-1 mt-6">
     <nav class="grid grid-flow-row gap-2">
