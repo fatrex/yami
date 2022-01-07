@@ -6,13 +6,17 @@ const createWindow = () => {
     width: 1024,
     height: 768,
     titleBarStyle: 'hidden',
+    icon: path.join(process.cwd(), './static/logo.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.cjs')
     }
   })
 
-  // win.loadFile('index.html')
-  win.loadURL('http://localhost:3000')
+  if (process.env.NODE_ENV === 'dev') {
+    win.loadURL('http://localhost:3000')
+  } else {
+    win.loadFile(path.join(__dirname, '../../build/index.html'))
+  }
 }
 
 app.whenReady().then(() => {

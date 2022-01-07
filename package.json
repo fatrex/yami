@@ -9,16 +9,24 @@
     "email": "yami@dnlrns.dev"
   },
   "scripts": {
-    "dev": "concurrently \"electron .\" \"svelte-kit dev\"",
+    "dev": "NODE_ENV=dev && concurrently \"electron .\" \"svelte-kit dev\"",
     "build": "svelte-kit build",
-    "package": "svelte-kit package",
+    "package": "electron-forge package",
     "preview": "svelte-kit preview",
-    "lint": "eslint --ignore-path .gitignore ."
+    "lint": "eslint --ignore-path .gitignore .",
+    "start": "electron-forge start",
+    "make": "electron-forge make"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.61",
+    "@electron-forge/maker-deb": "^6.0.0-beta.61",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.61",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
+    "@electron-forge/maker-zip": "^6.0.0-beta.61",
     "@seald-io/nedb": "^2.2.0",
     "@sveltejs/adapter-auto": "next",
-    "@sveltejs/kit": "next",
+    "@sveltejs/adapter-static": "^1.0.0-next.24",
+    "@sveltejs/kit": "1.0.0-next.208",
     "autoprefixer": "^10.4.0",
     "concurrently": "^6.5.1",
     "electron": "^16.0.5",
@@ -32,5 +40,34 @@
     "svelte-preprocess": "^4.10.1",
     "tailwindcss": "^3.0.7"
   },
-  "dependencies": {}
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "yami"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
 }
