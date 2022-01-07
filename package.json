@@ -9,7 +9,7 @@
     "email": "yami@dnlrns.dev"
   },
   "scripts": {
-    "dev": "concurrently \"electron .\" \"svelte-kit dev\"",
+    "dev": "NODE_ENV=dev && concurrently \"electron .\" \"svelte-kit dev\"",
     "build": "svelte-kit build",
     "package": "electron-forge package",
     "preview": "svelte-kit preview",
@@ -25,7 +25,8 @@
     "@electron-forge/maker-zip": "^6.0.0-beta.61",
     "@seald-io/nedb": "^2.2.0",
     "@sveltejs/adapter-auto": "next",
-    "@sveltejs/kit": "next",
+    "@sveltejs/adapter-static": "^1.0.0-next.24",
+    "@sveltejs/kit": "1.0.0-next.208",
     "autoprefixer": "^10.4.0",
     "concurrently": "^6.5.1",
     "electron": "^16.0.5",
