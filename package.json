@@ -9,7 +9,7 @@
     "email": "yami@dnlrns.dev"
   },
   "scripts": {
-    "dev": "NODE_ENV=dev && concurrently \"electron .\" \"svelte-kit dev\"",
+    "dev": "concurrently \"NODE_ENV=dev electron .\" \"svelte-kit dev\"",
     "build": "svelte-kit build",
     "package": "electron-forge package",
     "preview": "svelte-kit preview",
