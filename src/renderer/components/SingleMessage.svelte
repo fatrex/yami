@@ -1,7 +1,7 @@
 <script>
   import { currentAccount, currentMessage } from '../stores';
 
-  export let uid
+  export let seq
   export let subject
   export let from
   export let date
@@ -14,19 +14,21 @@
   }
 
   async function openContent() {
-    const message = await window.messages.open({ account: $currentAccount, uid})
+    const message = await window.messages.open({ account: $currentAccount, seq})
     currentMessage.set(message)
   }
 </script>
 
-<div class="text-sm grid grid-flow-col grid-cols-12 items-center h-10 hover:bg-gray-200 cursor-pointer" on:click={openContent}>
-  <div class="justify-self-start col-span-1 pl-2">
-    <p>{humanDate(date)}</p>
-  </div>
-  <div class="col-span-9">
-    <p class="font-semibold">{subject}</p>
+<div 
+  class="text-sm grid grid-flow-col grid-cols-12 items-center hover:bg-gray-200 cursor-pointer" 
+  on:click={openContent}
+  class:bg-gray-200="{$currentMessage && $currentMessage.seq === seq}"
+>
+  <div class="col-span-10 pl-2 py-1 flex flex-col">
+    <p class="text-sm font-thin">{humanDate(date)}</p>
+    <p class="font-medium">{subject}</p>
   </div>
   <div class="flex flex-col justify-self-end col-span-2 text-right pr-2">
-    <p class="text-sm">{from[0].address}</p>
+    <p class="text-sm font-light">{from[0].address}</p>
   </div>
 </div>
