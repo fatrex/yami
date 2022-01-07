@@ -29,7 +29,7 @@
       {/if}
     </nav>
 
-    <div class="flex items-center px-4 -mx-2">
+    <div class="flex items-center mb-9">
       <AccountPicker />
     </div>
   </div>
