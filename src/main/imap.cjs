@@ -44,13 +44,13 @@ const retrieveFolders = async (account) => {
   return foldersTree;
 }
 
-const openMessage = async (account, messageUid) => {
+const openMessage = async (account, messageSeq) => {
   const client = createClient({ ...account, pass: account.password })
   await client.connect();
   let lock = await client.getMailboxLock('INBOX');
   let message = null
   try {
-    message = await client.fetchOne(messageUid, { envelope: true, source: true,  });
+    message = await client.fetchOne(messageSeq, { envelope: true, source: true,  });
   } finally {
       lock.release();
   }

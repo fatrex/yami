@@ -9,7 +9,7 @@
   <div class="grid grid-cols-1 divide-y overflow-y-scroll max-h-96">
     {#if $messages.length > 0}
     {#each $messages as message }
-    <SingleMessage {...message.envelope} uid={message.seq} />
+    <SingleMessage {...message.envelope} seq={message.seq} />
     {/each}
     {/if}
   </div>
