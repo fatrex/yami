@@ -1,3 +1,5 @@
+<img width="100" src="./src/renderer/images/logo.png">
+
 ### yami
 **y**et **a**nother e**m**ail cl**i**ent
 
