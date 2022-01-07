@@ -12,8 +12,11 @@ const createWindow = () => {
     }
   })
 
-  // win.loadFile('index.html')
-  win.loadURL('http://localhost:3000')
+  if (process.env.NODE_ENV === 'dev') {
+    win.loadURL('http://localhost:3000')
+  } else {
+    win.loadFile(path.join(__dirname, '../../build/index.html'))
+  }
 }
 
 app.whenReady().then(() => {
