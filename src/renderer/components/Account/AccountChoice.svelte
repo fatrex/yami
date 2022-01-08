@@ -1,12 +1,19 @@
 <script>
+import { modalStore } from '../../stores/modal';
+
+  import { folders, messages, currentAccount, accounts } from '../../stores'
+
   import Modal from '../Modal.svelte'
+  import AccountNew from './AccountNew.svelte';
 
-  import { currentAccount, accounts } from '../../stores'
-  import { modalStore } from '../../stores/modal';
-
-  function pick (account, closeModal) {
-    console.log(account)
-    closeModal()
+  async function pick (account, closeModal) {
+    const responses = await Promise.all([window.folders.load(account), window.messages.load(account)]);
+    if (responses.length > 0) {
+      folders.set(responses[0])
+      messages.set(responses[1])
+      currentAccount.set(account)
+      closeModal()
+    }
   }
 </script>
 
@@ -22,17 +29,26 @@
     </button>
   </div>
 
-  <div slot="header" class="bg-gray-800 text-white p-5">
-    Choose account
+  <div slot="header" class="bg-gray-800 text-white p-5 flex flex-row items-center" let:store={{close}}>
+    <h3 class="flex grow">
+      Choose account
+    </h3>
+    <div class="flex grow-0">
+      <button on:click={close}>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
   </div>
 
   <div slot="content" class="p-5 flex flex-col" let:store={{close}}>
     {#each $accounts as account}
-      <button class="rounded border-2 border-gray-800" on:click={pick(account, close)}>{account.user}</button>
+      <button class="rounded border-2 border-gray-800 my-2" on:click={pick(account, close)}>{account.user}</button>
     {/each}
   </div>
 
-  <div slot="footer" class="flex flex-row justify-end space-x-4 p-2" let:store={{close}}>
-    <button on:click={close} class="border-2 border-gray-800 rounded p-2 w-1/3">Cancel</button>
+  <div slot="footer" class="flex flex-row justify-end space-x-4 p-2">
+    <AccountNew />
   </div>
 </Modal>
