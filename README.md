@@ -1,16 +1,31 @@
-<img width="100" src="./src/renderer/images/logo.png">
+<p align="center">
+  <img width="100" src="./src/renderer/images/logo.png">
+</p>
 
-### yami
+# yami
 **y**et **a**nother e**m**ail cl**i**ent
 
 ---
 
 ## Description
 **yami** is a small, simple and "no fuss" email client.
-Is made with Svelte + Electron + Tailwind.
+Is made with Sveltekit + Electron + Tailwind.
 
-## Important Notice
+## ⚠️ Important Notice ⚠️
 This is a work in progess so is not suitable for stable use
+
+## 🛠 Development
+```bash
+# Clone the repo
+git clone git@github.com:dnlnrs/yami.git
+cd yami
+
+# Install the dependencies
+yarn
+
+# Start the app
+yarn dev
+```
 
 ## License
 See [LICENSE](LICENSE)
